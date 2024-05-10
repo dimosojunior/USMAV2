@@ -1,0 +1,115 @@
+{% extends 'TemplatesApp/base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+
+<!DOCTYPE html>
+<html>
+<head>
+   <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add Article</title>
+
+</head>
+<body>
+
+  <div class="container-fluid">
+
+
+
+
+
+ 
+         <div class="login">
+    <h2 style="font-size: 18px;font-family: sans-serif;">Contact Me </h2>
+
+          {% if messages %}
+{% for message in messages %}
+     
+
+          <div class="alert alert-warning alert-dismissible fade show" role="alert">
+  <strong style="color: red;font-size: 16px;">{{message}}</strong>
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+    {% endfor %}
+  {% endif %}
+
+    <form method="POST" action=""enctype="multipart/form-data">
+        {% csrf_token %}
+
+     
+
+
+
+
+
+
+<div class="user-box">
+  <div class="user-box">
+    <label>Your Full Name</label>
+        <input type="text" name="FullName" required>
+        
+      </div>
+
+         <div class="user-box">
+          <label>Your Email</label>
+        <input type="email" name="Email" required>
+        
+      </div>
+
+      <div class="user-box">
+        <label>Phone Number</label>
+        <input type="number" name="Phone" required>
+        
+      </div>
+
+         <div class="user-box">
+          <label>Where are you living</label>
+        <input type="text" name="Place" required>
+        
+      </div>
+
+
+       <div class="user-box">
+        <label>Your Message</label><br>
+        <textarea type="text" name="Message" required></textarea>
+        
+      </div>
+
+
+     <!--  <p><input type="checkbox">Remember me <span>Forgot?</span></p> -->
+
+        <a href="" class="link-btn">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+
+
+
+        <button type="submit"  style="background-color: blue;color: white;padding: 10px;padding-right: 20px;padding-left: 20px;font-size: 20px;border-radius: 10px;">Send Message</button>
+      </a>
+
+     <!--  <div class="options-02">
+                    <p>You don't have an account? <a href="" style="font-size: 18px;color: lightblue;font-weight: bold;text-decoration: none;">Sign Up</a></p>
+                </div> -->
+    </form>
+  </div>
+
+
+
+
+
+
+
+
+
+    
+  </div>
+
+</body>
+</html>
+{% endblock %}

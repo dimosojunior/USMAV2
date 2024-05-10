@@ -1,0 +1,168 @@
+{% extends 'TemplatesApp/base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+
+<!DOCTYPE html>
+<html>
+<head>
+   <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add Expert</title>
+
+</head>
+<body>
+
+  <div class="container-fluid">
+
+
+
+
+
+ 
+         <div class="login">
+    <h2 style="font-size: 18px;font-family: sans-serif;">Add New Expert </h2>
+
+          {% if messages %}
+{% for message in messages %}
+     
+
+          <div class="alert alert-warning alert-dismissible fade show" role="alert">
+  <strong style="color: red;font-size: 16px;">{{message}}</strong>
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+    {% endfor %}
+  {% endif %}
+
+    <form method="POST" action=""enctype="multipart/form-data">
+        {% csrf_token %}
+
+         <div class="user-box">
+          <label>Choose Expert Category *</label>
+        {{form.CategoryName}}
+        
+      </div>
+
+      <div class="user-box">
+         <label>Student Name *</label>
+        {{form.StudentName}}
+       
+      </div>
+
+       <div class="user-box">
+         <label>Student Place *</label>
+       {{form.StudentPlace}}
+       
+      </div>
+
+
+
+<div class="user-box">
+        <label>Student Phone Number</label>
+       {{form.Phone}}
+        
+      </div>
+
+      
+
+      <div class="user-box">
+         <label>Student Image *</label>
+       {{form.StudentImage}}
+       
+      </div>
+
+
+      
+
+
+      
+
+     
+
+       
+
+
+         <div class="user-box">
+          <label>Student Github Link</label>
+       {{form.Github}}
+        
+      </div>
+
+
+         <div class="user-box">
+           <label>Student Youtube Link</label>
+
+       {{form.Youtube}}
+             </div>
+
+
+        <div class="user-box">
+           <label>Student Instagram Link</label>
+
+       {{form.Instagram}}
+             </div>
+
+
+        <div class="user-box">
+           <label>Student Email Link</label>
+
+       {{form.Email}}
+             </div>
+
+
+        <div class="user-box">
+           <label>Student Whatsapp Link</label>
+
+       {{form.Whatsapp}}
+             </div>
+
+         
+
+
+       <div class="user-box">
+        <label>Description</label><br>
+        {{form.media}}
+        {{form.Body}}
+        
+      </div>
+
+
+
+
+
+     <!--  <p><input type="checkbox">Remember me <span>Forgot?</span></p> -->
+
+        <a href="" class="link-btn">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+
+
+
+        <button type="submit"  style="background-color: blue;color: white;padding: 10px;padding-right: 20px;padding-left: 20px;font-size: 20px;border-radius: 10px;">Add Expert</button>
+      </a>
+
+     <!--  <div class="options-02">
+                    <p>You don't have an account? <a href="" style="font-size: 18px;color: lightblue;font-weight: bold;text-decoration: none;">Sign Up</a></p>
+                </div> -->
+    </form>
+  </div>
+
+
+
+
+
+
+
+
+
+    
+  </div>
+
+</body>
+</html>
+{% endblock %}

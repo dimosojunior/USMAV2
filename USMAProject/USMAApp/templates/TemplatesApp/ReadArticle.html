@@ -1,0 +1,182 @@
+
+{% extends 'TemplatesApp/base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Article Details</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+
+</head>
+
+<body>
+
+ 
+  <main id="main">
+    <!-- ======= Breadcrumbs ======= -->
+    <div class="breadcrumbs" data-aos="fade-in">
+      <div class="container">
+        <h2>{{ReadArticle.ArticlesName.ArticlesName}}</h2>
+        
+      </div>
+    </div><!-- End Breadcrumbs -->
+
+    <!-- ======= About Section ======= -->
+    <section id="about" class="about">
+      <div class="container" data-aos="fade-up">
+
+        <div class="row">
+          {% if ReadArticle.ArticleImage %}
+          <div class="col-lg-6 order-1 order-lg-2" data-aos="fade-left" data-aos-delay="100">
+            
+            <img src="{{ReadArticle.ArticleImage.url}}" class="img-fluid" alt="" style="height: 9cm;width: 100%;border-radius: 10px;">
+           
+            
+          </div>
+
+           {% else %}
+           <div class="col-lg-6 order-1 order-lg-2" data-aos="fade-left" data-aos-delay="100">
+            <img src="{% static 'USMAApp/assets/img/icon.png' %}" class="img-fluid" alt="" style="height: 9cm;width: 100%;border-radius: 10px;">
+
+            </div>
+
+            {% endif %}
+
+
+          <div class="col-lg-6 pt-4 pt-lg-0 order-2 order-lg-1 content">
+            <h3 style="font-size: 18px;">Article Name: {{ReadArticle.Title}}</h3>
+            
+            <ul>
+              <li><i class="bi bi-check-circle"></i> Author: {{ReadArticle.WrittenBy}}</li>
+
+              {% if ReadArticle.year %}
+
+               <li><i class="bi bi-check-circle"></i>Published Year: {{ReadArticle.year}}</li>
+
+               {% endif %}
+
+              
+               <li><i class="bi bi-check-circle"></i> Date Created: {{ReadArticle.Created}}</li>
+               
+
+
+              
+
+
+
+              {% if ReadArticle.ArticleBody %}
+               <li><i class="bi bi-check-book"></i> About Article:  {{ReadArticle.ArticleBody|safe}}</li>
+               {% endif %}
+
+
+
+              
+            </ul>
+           
+
+          </div>
+        </div>
+
+      </div>
+
+     
+
+    </section><!-- End About Section -->
+
+
+
+   
+
+
+
+
+    <!-- ======= Counts Section ======= -->
+    <section id="counts" class="counts section-bg">
+      <div class="container">
+
+        <div class="row counters">
+         {% if ReadArticle.pdf %}
+
+          <div class="col-lg-3 col-6 text-center">
+            <span data-purecounter-start="0" data-purecounter-end="42" data-purecounter-duration="1" class="purecounter"></span>
+               <p>View Article <br>
+             <a href="{{ReadArticle.pdf.url}}"  type="submit">
+                <button class="btn btn-primary" style="margin-top: 8px;padding: 5px;font-size: 16px;"><i class="bi bi-eye"></i> View</button>
+
+               </a>
+            </p>          </div>
+          
+
+          <div class="col-lg-3 col-6 text-center">
+            <span data-purecounter-start="0" data-purecounter-end="42" data-purecounter-duration="1" class="purecounter"></span>
+               <p>Download Article <br>
+              <a href="{{ReadArticle.pdf.url}}" download=""  type="submit">
+                <button class="btn btn-danger" style="margin-top: 8px;padding: 5px;font-size: 16px;"><i class="bi bi-book"></i> Download</button>
+               </a>
+            </p>          </div>
+          {% endif %}
+
+
+           {% if ReadArticle.Github %}
+
+          <div class="col-lg-3 col-6 text-center">
+            <span data-purecounter-start="0" data-purecounter-end="42" data-purecounter-duration="1" class="purecounter"></span>
+               <p>Github Link <br>
+               <a href="{{ReadArticle.Github}}"><i class="bx bxl-github" style="color: red;font-size: 40px;margin: 0px;padding: 0px;"></i></a>
+            </p>          </div>
+          {% endif %}
+
+        
+
+        
+
+
+          {% if ReadArticle.Youtube %}
+
+          <div class="col-lg-3 col-6 text-center">
+            <span data-purecounter-start="0" data-purecounter-end="42" data-purecounter-duration="1" class="purecounter"></span>
+            <p>Youtube Link <br>
+               <a href="{{ReadArticle.Youtube}}"><i class="bx bxl-youtube" style="color: red;font-size: 40px;margin: 0px;padding: 0px;"></i></a>
+            </p>
+             
+     
+          </div>
+          {% endif %}
+
+
+        
+
+
+         
+
+          
+
+        </div>
+
+      </div>
+    </section><!-- End Counts Section -->
+
+
+
+            
+
+  </main><!-- End #main -->
+
+  
+
+
+</body>
+
+</html>
+
+{% endblock %}

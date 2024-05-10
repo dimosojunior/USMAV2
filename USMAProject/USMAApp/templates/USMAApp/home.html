@@ -1,0 +1,808 @@
+{% extends 'USMAApp/base.html' %}
+
+{% load static %}
+
+{% block content %}
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title></title>
+
+	<style type="text/css">
+
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: sans-serif;
+        font-size: 16px;
+
+      }
+      ul li{
+        list-style: none;
+      }
+		
+ h5{
+  font-size: 16px;
+  font-family: sans-serif;
+ }
+	</style>
+
+</head>
+<body>
+	
+<div class="container-fluid">
+
+
+<center>
+		<h1 style="color: white;font-weight: bold;margin-top: 20px;font-size: 20px">UNIVERSITY STUDENTS MATERIALS APP</h1>
+
+{% if user.is_authenticated %}
+
+ {% if user.is_superuser %}
+    <a href="/admin">
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" style="font-size: 18px;margin-right: 20px;">Admin</button></a>
+ {% else %}
+ <h1 style="color: white;font-weight: bold;margin-top: 10px;font-size: 20px;color: red;">Welcome {{user.username}}</h1>
+
+ {% endif %}
+
+  
+
+  {% else %}
+   <h1 style="color: white;font-weight: bold;margin-top: 10px;font-size: 20px;color: red;">click login button to be verified!! <span style="color: white"> or </span> </h1> 
+   <!-- <a href=""> -->
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#signup" style="font-size: 18px;margin-right: 20px;margin-bottom: 10px">Signup</button><!-- </a> -->
+
+   
+  {% endif %}
+
+        {% if messages %}
+{% for message in messages %}
+     
+
+          <div class="alert alert-warning alert-dismissible fade show" role="alert">
+  <strong style="color: red;font-size: 16px;">{{message}}</strong>
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+    {% endfor %}
+  {% endif %}
+
+	</center>
+
+
+<!-- KAMA USER AMIJISAJILI ZINAANZIA HAPA -->
+
+{% if user.is_authenticated %}
+
+
+<div class="buttons-container">
+
+
+	
+<!-- <center>
+		<h1 style="color: white;font-weight: bold;">SMART INVIGILATION<br> SYSTEM</h1>
+	</center> -->
+
+<div class="buttons"><!-- mwanzo wa buttons-div -->
+
+
+
+
+  <label>
+    <input type="checkbox" name="check">
+    <span data-bs-toggle="modal" data-bs-target="#startwifi"></span>
+    <i class="fa fa-book icon" data-bs-toggle="modal" data-bs-target="#startwifi"> USMA</i>
+  </label>
+
+
+  
+
+ 
+
+
+
+
+<label>
+    <input type="checkbox" name="check">
+    <span data-bs-toggle="modal" data-bs-target="#docs"></span>
+    <i class="fa fa- icon" data-bs-toggle="modal" data-bs-target="#docs"> DOCS</i>
+  </label>
+
+<a href="http://127.0.0.1:8000/apis/" style="text-decoration: none;">
+  <label>
+    <input type="checkbox" name="check">
+    <span data-bs-toggle="modal" data-bs-target="#redoc"></span>
+    <i class="fa fa- icon" data-bs-toggle="modal" data-bs-target="#redoc">REDOC</i>
+  </label>
+</a>
+
+
+
+
+<a href="{% url 'logout' %}" style="text-decoration: none;">
+  <label>
+    <!-- <input type="checkbox" name="check"> -->
+    <span></span>
+    <i class="fa fa-user icon"> LOGOUT</i>
+  </label></a>
+
+
+
+
+ 
+
+  
+
+
+
+
+
+</div><!-- mwisho wa buttons div -->
+
+
+
+
+</div><!-- mwisho wa butons-container -->
+
+
+
+<!-- KAMA USER AMIJISAJILI ZINAISHIA HAPA -->
+
+
+
+{% else %}
+
+
+
+<!-- KAMA USER HAJAJISAJILI ZINAANZIA HAPA -->
+
+
+
+<div class="buttons-container">
+
+
+  
+<!-- <center>
+    <h1 style="color: white;font-weight: bold;">SMART INVIGILATION<br> SYSTEM</h1>
+  </center> -->
+
+<div class="buttons"><!-- mwanzo wa buttons-div -->
+
+
+
+<label>
+    <input type="checkbox" name="check">
+    <span data-bs-toggle="modal" data-bs-target="#help"></span>
+    <i class="fa fa-moon icon" data-bs-toggle="modal" data-bs-target="#help"> HELP</i>
+  </label>
+
+
+<label>
+    <input type="checkbox" name="check">
+    <span data-bs-toggle="modal" data-bs-target="#usma2"></span>
+    <i class="fa fa-book icon" data-bs-toggle="modal" data-bs-target="#usma2"> USMA</i>
+  </label>
+
+
+<label>
+    <input type="checkbox" name="check">
+    <span data-bs-toggle="modal" data-bs-target="#login"></span>
+    <i class="fa fa-user icon" data-bs-toggle="modal" data-bs-target="#login"> LOGIN</i>
+  </label>
+
+
+
+  
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+
+
+  
+  
+
+</div><!-- mwisho wa buttons div -->
+
+
+
+
+</div><!-- mwisho wa butons-container -->
+
+
+
+<!-- KAMA USER HAJAJISAJILI ZINAISHIA HAPA -->
+
+
+
+
+{% endif %}
+
+
+
+
+
+
+
+
+<!-- ----------------------------------------------------------- -->
+
+
+
+<!-- Modal  for LOGIN BUTTON -->
+
+
+<div class="modal fade" id="login" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel"> UNIVERSITY STUDENTS MATERIALS APP </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" style="font-size: 22px;">
+
+        
+         <div class="login">
+    <h2 style="font-size: 18px;font-family: sans-serif;">LOGIN HERE</h2>
+    <form method="POST" action="{% url 'signin' %}">
+        {% csrf_token %}
+
+      <div class="user-box">
+        <input type="email" name="email" required>
+        <label>Email</label>
+      </div>
+
+      <div class="user-box">
+        <input type="password" name="password" required>
+        <label>Password</label>
+      </div>
+     <!--  <p><input type="checkbox">Remember me <span>Forgot?</span></p> -->
+
+        <a href="" class="link-btn">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+
+
+
+        <button type="submit"  style="background-color: green;color: white;padding: 10px;padding-right: 20px;padding-left: 20px;font-size: 20px;border-radius: 10px;">Login</button>
+      </a>
+
+     <!--  <div class="options-02">
+                    <p>You don't have an account? <a href="" style="font-size: 18px;color: lightblue;font-weight: bold;text-decoration: none;">Sign Up</a></p>
+                </div> -->
+    </form>
+  </div>
+
+</div> 
+<!-- mwisho wa modal-body -->
+
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal" style="font-size: 18px;">Close</button>
+
+
+
+
+             </div>
+    </div>
+  </div>
+</div>
+<!--MWISHO WA  Modal  for LOGIN BUTTON -->
+
+
+
+
+
+
+
+
+
+<!-- Modal  for SIGNUP BUTTON -->
+
+
+<div class="modal fade" id="signup" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel"> UNIVERSITY STUDENTS MATERIALS APP </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" style="font-size: 22px;">
+
+        
+         <div class="login">
+    <h2 style="font-size: 18px;font-family: sans-serif;">SIGNUP HERE</h2>
+    <form method="POST" action="{% url 'signup' %}">
+        {% csrf_token %}
+
+      <div class="user-box">
+        <input type="email" name="email" required>
+        <label>Email</label>
+      </div>
+
+      <div class="user-box">
+        <input type="text" name="username" required>
+        <label>UserName</label>
+      </div>
+
+      <div class="user-box">
+        <input type="password" name="password1" required>
+        <label>Password</label>
+      </div>
+
+      <div class="user-box">
+        <input type="password" name="password2" required>
+        <label>Confirm Password</label>
+      </div>
+
+     <!--  <p><input type="checkbox">Remember me <span>Forgot?</span></p> -->
+
+        <a href="" class="link-btn">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+
+
+
+        <button type="submit"  style="background-color: green;color: white;padding: 10px;padding-right: 20px;padding-left: 20px;font-size: 20px;border-radius: 10px;">Signup</button>
+      </a>
+
+     <!--  <div class="options-02">
+                    <p>You don't have an account? <a href="" style="font-size: 18px;color: lightblue;font-weight: bold;text-decoration: none;">Sign Up</a></p>
+                </div> -->
+    </form>
+  </div>
+
+</div> 
+<!-- mwisho wa modal-body -->
+
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal" style="font-size: 18px;">Close</button>
+
+
+
+
+             </div>
+    </div>
+  </div>
+</div>
+<!--MWISHO WA  Modal  for SIGNUP BUTTON -->
+
+
+
+
+
+
+
+
+
+
+
+<!-- ----------------------------------------------------------- -->
+
+<!-- Modal  for HELP BUTTON -->
+
+
+<div class="modal fade" id="help" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">WELCOME TO UNIVERSITY STUDENTS MATERIALS APP </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+
+      <div class="modal-body" style="font-size: 18px;background-color:rgb(5,5,49);color: white;font-family: sans-serif;">
+
+        <ul>
+          <li><span style="color: red">Step 1:</span> Login using a correct password and email.</li>
+          <li><span style="color: red">Step 2:</span> Click Docs button to USMA Document Apis</li>
+          <li><span style="color: red">Step 3:</span> Click Redoc button to view all USMA endpoints in Redoc</li>
+          <li><span style="color: red">Step 4:</span> Click USMA button to view University Students Materials App (USMA)</li>
+          <li><span style="color: red">Step 5:</span> Click Logout button to logout from the system</li>
+        </ul>
+
+<center>
+<h2 style="color: wheat;font-size: 18px;font-family: sans-serif;">For Testing Apis using Swagger UI</h2></center>
+         <ul>
+          <li><span style="color: red">Step 1: </span>Open this url <span style="color: red">account/token/create/ </span> to log in using correct email and password in order to get Access Token.</li>
+          <li><span style="color: red">Step 2:</span> Copy the Access token and then click Authorize button at the top right corner</li>
+          <li><span style="color: red">Step 3:</span> In input field write, <span style="color: red">Bearer Paste the copied Access Token here</span>, and then click Authorize </li>
+          <li><span style="color: red">Step 4:</span> Now you can test all USMA Apis</li>
+          
+        </ul>
+        </div>
+
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal" style="font-size: 18px;">Close</button>
+        </div>
+
+
+
+
+    </div>
+  </div>
+</div>
+<!--MWISHO WA  Modal  for HELP BUTTON -->
+
+
+
+
+
+
+
+<!-- ----------------------------------------------------------- -->
+
+<!-- Modal  for DOCS NOT LOGIN BUTTON -->
+
+
+<div class="modal fade" id="docs2" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">WELCOME TO UNIVERSITY STUDENTS MATERIALS APP </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+
+      <div class="modal-body" style="font-size: 18px;background-color:rgb(5,5,49);color: white;font-family: sans-serif;">
+
+        <ul>
+         <li>Sorry!!!! <br>You have to login first.</li>
+        </ul>
+        </div>
+
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal" style="font-size: 18px;">Close</button>
+        </div>
+
+
+
+
+    </div>
+  </div>
+</div>
+<!--MWISHO WA  Modal  for DOCS NOT LOGIN BUTTON -->
+
+
+
+
+
+
+<!-- ----------------------------------------------------------- -->
+
+<!-- Modal  for REDOC NOT LOGIN BUTTON -->
+
+
+<div class="modal fade" id="redoc2" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">WELCOME TO UNIVERSITY STUDENTS MATERIALS APP </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+
+      <div class="modal-body" style="font-size: 18px;background-color:rgb(5,5,49);color: white;font-family: sans-serif;">
+
+        <ul>
+         <li>Sorry!!!! <br>You have to login first.</li>
+        </ul>
+        </div>
+
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal" style="font-size: 18px;">Close</button>
+        </div>
+
+
+
+
+    </div>
+  </div>
+</div>
+<!--MWISHO WA  Modal  for EXTERNAL NOT LOGIN BUTTON -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- ----------------------------------------------------------- -->
+
+<!-- Modal  for USMA NOT LOGIN BUTTON -->
+
+
+<div class="modal fade" id="usma2" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">WELCOME TO UNIVERSITY STUDENTS MATERIALS APP </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+
+      <div class="modal-body" style="font-size: 18px;background-color:rgb(5,5,49);color: white;font-family: sans-serif;">
+
+        <ul>
+         <li>Sorry!!!! <br>You have to login first.</li>
+        </ul>
+        </div>
+
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal" style="font-size: 18px;">Close</button>
+        </div>
+
+
+
+
+    </div>
+  </div>
+</div>
+<!--MWISHO WA  Modal  for WIFI NOT LOGIN BUTTON -->
+
+
+
+
+
+
+
+<!-- ----------------------------------------------------------- -->
+
+<!-- Modal  for LOGOUT2 NOT LOGIN BUTTON -->
+
+
+<div class="modal fade" id="logout2" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">WELCOME TO UNIVERSITY STUDENTS MATERIALS APP </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+
+      <div class="modal-body" style="font-size: 18px;background-color:rgb(5,5,49);color: white;font-family: sans-serif;">
+
+        <ul>
+         <li>Sorry!!!! <br> You cannot logout from the system without logging in.</li>
+        </ul>
+        </div>
+
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal" style="font-size: 18px;">Close</button>
+        </div>
+
+
+
+
+    </div>
+  </div>
+</div>
+<!--MWISHO WA  Modal  for LOGOUT2 NOT LOGIN BUTTON -->
+
+
+
+
+
+
+
+<!-- ----------------------------------------------------------- -->
+
+<!-- Modal  for LOGIN2 NOT LOGIN BUTTON -->
+
+
+<div class="modal fade" id="login2" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">WELCOME TO UNIVERSITY STUDENTS MATERIALS APP </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+
+      <div class="modal-body" style="font-size: 18px;background-color:rgb(5,5,49);color: white;font-family: sans-serif;">
+
+        <ul>
+         <li>Sorry!!!! <br> You are already authenticated as {{user.username}} in this system.</li>
+        </ul>
+        </div>
+
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal" style="font-size: 18px;">Close</button>
+        </div>
+
+
+
+
+    </div>
+  </div>
+</div>
+<!--MWISHO WA  Modal  for LOGIN2 NOT LOGIN BUTTON -->
+
+
+
+
+
+
+
+
+<!-- ----------------------------------------------------------- -->
+
+<!--MWISHO WA  Modal   TO START DOCS BUTTON -->
+
+
+<div class="modal fade" id="docs" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">WELCOME TO UNIVERSITY STUDENTS MATERIALS APP </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+
+      <div class="modal-body" style="font-size: 18px;background-color:rgb(5,5,49);color: white;font-family: sans-serif;">
+
+        <ul>
+         <li>Hey {{user.username}}, <br> Are you sure you want to view USMA docs ???</li>
+        </ul>
+        </div>
+
+
+      <div class="modal-footer">
+        <a href="http://127.0.0.1:8000/docs/" style="text-decoration: none;">
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" style="font-size: 18px;margin-right: 20px;">Confirm</button></a>
+
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal" style="font-size: 18px;">Close</button>
+        </div>
+
+
+
+
+    </div>
+  </div>
+</div>
+<!--MWISHO WA  Modal   TO START DOCS BUTTON -->
+
+
+
+
+
+
+<!-- ----------------------------------------------------------- -->
+
+<!--MWISHO WA  Modal   TO START REDOC BUTTON -->
+
+
+<div class="modal fade" id="redoc" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">WELCOME TO UNIVERSITY STUDENTS MATERIALS APP </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+
+      <div class="modal-body" style="font-size: 18px;background-color:rgb(5,5,49);color: white;font-family: sans-serif;">
+
+        <ul>
+         <li>Hey {{user.username}}, <br> Are you sure you want to view all USMA endpoints in Redoc ???</li>
+        </ul>
+        </div>
+
+
+      <div class="modal-footer">
+        <a href="http://127.0.0.1:8000/redoc/" style="text-decoration: none;">
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" style="font-size: 18px;margin-right: 20px;">Confirm</button></a>
+
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal" style="font-size: 18px;">Close</button>
+        </div>
+
+
+
+
+    </div>
+  </div>
+</div>
+<!--MWISHO WA  Modal   TO START ENDPOINTs BUTTON -->
+
+
+
+
+
+
+
+
+
+<!-- ----------------------------------------------------------- -->
+
+<!--MWISHO WA  Modal   TO START WIFI BUTTON -->
+
+
+<div class="modal fade" id="startwifi" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">WELCOME TO UNIVERSITY STUDENTS MATERIALS APP </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+
+      <div class="modal-body" style="font-size: 18px;background-color:rgb(5,5,49);color: white;font-family: sans-serif;">
+
+        <ul>
+         <li>Hey {{user.username}}, <br> Visit our application - University Students Materials App <span style="color: red">(USMAA) </span> <br>
+          <span style="color: green">Free Projects Share</span> </li>
+        </ul>
+        </div>
+
+
+      <div class="modal-footer">
+        <a href="{% url 'USMAHome' %}">
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" style="font-size: 18px;margin-right: 20px;">Confirm</button></a>
+
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal" style="font-size: 18px;">Close</button>
+        </div>
+
+
+
+
+    </div>
+  </div>
+</div>
+<!--MWISHO WA  Modal   TO START WIFI BUTTON -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+</div><!-- mwisho wa container -->
+</body>
+</html>
+{% endblock %}

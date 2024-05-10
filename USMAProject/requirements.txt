@@ -1,0 +1,6 @@
+distlib==0.3.6
+dlib @ file:///C:/dlib-19.22.99-cp39-cp39-win_amd64.whl
+filelock==3.8.0
+platformdirs==2.5.4
+virtualenv==20.17.0
+virtualenvwrapper-win==1.2.7

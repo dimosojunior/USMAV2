@@ -1,0 +1,212 @@
+
+{% extends 'TemplatesApp/base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Read Project</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+
+</head>
+
+<body>
+
+ 
+  <main id="main">
+    <!-- ======= Breadcrumbs ======= -->
+    <div class="breadcrumbs" data-aos="fade-in">
+      <div class="container">
+        <h2>{{ReadProject.ProjectName}}</h2>
+        
+      </div>
+    </div><!-- End Breadcrumbs -->
+
+    <!-- ======= About Section ======= -->
+    <section id="about" class="about">
+      <div class="container" data-aos="fade-up">
+
+        <div class="row">
+          {% if ReadProject.ProjectImage %}
+          <div class="col-lg-6 order-1 order-lg-2" data-aos="fade-left" data-aos-delay="100">
+            
+            <img src="{{ReadProject.ProjectImage.url}}" class="img-fluid" alt="" style="height: 8cm;width: 100%;">
+           
+            
+          </div>
+
+           {% else %}
+           <div class="col-lg-6 order-1 order-lg-2" data-aos="fade-left" data-aos-delay="100">
+            <img src="{% static 'USMAApp/assets/img/not.jpeg' %}" class="img-fluid" alt="" style="height: 8cm;width: 100%;">
+
+            </div>
+
+            {% endif %}
+
+
+          <div class="col-lg-6 pt-4 pt-lg-0 order-2 order-lg-1 content">
+            <h3>Project Name: {{ReadProject.ProjectName}}</h3>
+            
+            <ul>
+              <li><i class="bi bi-check-circle"></i> Student Name: {{ReadProject.StudentName}}</li>
+
+               <li><i class="bi bi-check-circle"></i>Student's University: {{ReadProject.university.UniversityName}}</li>
+
+               {% if ReadProject.Year %}
+               <li><i class="bi bi-check-circle"></i>Project Year: {{ReadProject.Year}}</li>
+               {% endif %}
+
+
+               {% if ReadProject.Gender %}
+               <li><i class="bi bi-check-circle"></i> Gender: {{ReadProject.Gender}}</li>
+               {% endif %}
+
+
+               {% if ReadProject.CourseName %}
+               <li><i class="bi bi-check-circle"></i> Course Name: {{ReadProject.CourseName}}</li>
+               {% endif %}
+
+
+               {% if ReadProject.StudentEmail %}
+               <li><i class="bi bi-check-circle"></i> Student's Email: {{ReadProject.StudentEmail}}</li>
+               {% endif %}
+
+               {% if ReadProject.StudentPhoneNumber %}
+               <li><i class="bi bi-check-circle"></i> Student's Phone Number: {{ReadProject.StudentPhoneNumber}}</li>
+               {% endif %}
+
+
+ {% if ReadProject.pdf %}
+<li><i class="bi bi-check-circle"></i> Download Pdf Project Document 
+<a href="{{ReadProject.pdf.url}}" download type="submit">
+  <button class="btn btn-danger" style="margin-left: 15px;padding: 5px;">Download</button></a>
+
+</li>
+{% endif %}
+
+
+              
+            </ul>
+           
+
+          </div>
+        </div>
+
+      </div>
+
+      {% if ReadProject.ProjectBody %}
+
+       <div class="row" style="justify-content: center;align-items: center;margin: 5px;width: 90%;">
+       <p>
+             {{ReadProject.ProjectBody|safe}}
+            </p>
+    </div>
+
+    {% endif %}
+
+    </section><!-- End About Section -->
+
+
+
+   
+
+
+
+
+    <!-- ======= Counts Section ======= -->
+    <section id="counts" class="counts section-bg">
+      <div class="container">
+
+        <div class="row counters">
+
+           {% if ReadProject.pdf %}
+
+          <div class="col-lg-3 col-6 text-center">
+            <span data-purecounter-start="0" data-purecounter-end="1232" data-purecounter-duration="1" class="purecounter"></span>
+            <p>Download Pdf Project <br>
+<a href="{{ReadProject.pdf.url}}" download type="submit">
+  <button class="btn btn-danger" style="margin-top: 8px;padding: 5px;font-size: 16px;"><i class="bi bi-check-circle"></i> Download</button></a>
+            </p>
+          </div>
+
+
+          <div class="col-lg-3 col-6 text-center">
+            <span data-purecounter-start="0" data-purecounter-end="64" data-purecounter-duration="1" class="purecounter"></span>
+            <p>Read More <br>
+              <a href="{{ReadProject.pdf.url}}" type="submit">
+              <button class="btn btn-primary" style="margin-top: 8px;padding: 5px;font-size: 16px;"><i class="bi bi-eye"></i> View</button></a>
+            </p>
+          </div>
+
+           {% endif %}
+
+          {% if ReadProject.Github %}
+
+          <div class="col-lg-3 col-6 text-center">
+            <span data-purecounter-start="0" data-purecounter-end="42" data-purecounter-duration="1" class="purecounter"></span>
+               <p>Github Link <br>
+               <a href="{{ReadProject.Github}}"><i class="bx bxl-github" style="color: red;font-size: 40px;margin: 0px;padding: 0px;"></i></a>
+            </p>          </div>
+          {% endif %}
+
+
+          {% if ReadProject.Youtube %}
+
+          <div class="col-lg-3 col-6 text-center">
+            <span data-purecounter-start="0" data-purecounter-end="42" data-purecounter-duration="1" class="purecounter"></span>
+            <p>Youtube Link <br>
+               <a href="{{ReadProject.Youtube}}"><i class="bx bxl-youtube" style="color: red;font-size: 40px;margin: 0px;padding: 0px;"></i></a>
+            </p>
+             
+     
+          </div>
+          {% endif %}
+
+
+        
+
+
+          {% if ReadProject.WhatsappLink %}
+
+          <div class="col-lg-3 col-6 text-center">
+            <span data-purecounter-start="0" data-purecounter-end="42" data-purecounter-duration="1" class="purecounter"></span>
+            <p>Whatsapp Link <br>
+               <a href="{{ReadProject.WhatsappLink}}"><i class="bx bxl-whatsapp" style="color: green;font-size: 40px;margin: 0px;padding: 0px;"></i></a>
+            </p>
+          </div>
+          {% endif %}
+
+          
+
+        </div>
+
+      </div>
+    </section><!-- End Counts Section -->
+
+
+
+
+
+
+
+
+
+  </main><!-- End #main -->
+
+  
+
+
+</body>
+
+</html>
+
+{% endblock %}

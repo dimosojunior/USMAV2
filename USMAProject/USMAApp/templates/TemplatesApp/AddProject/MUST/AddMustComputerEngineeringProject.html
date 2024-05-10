@@ -1,0 +1,187 @@
+{% extends 'TemplatesApp/base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+
+<!DOCTYPE html>
+<html>
+<head>
+   <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add Project</title>
+</head>
+<body>
+
+  <div class="container-fluid">
+
+
+
+
+
+ 
+         <div class="login">
+    <h2 style="font-size: 18px;font-family: sans-serif;">Must - Computer Engineering Projects</h2>
+
+          {% if messages %}
+{% for message in messages %}
+     
+
+          <div class="alert alert-warning alert-dismissible fade show" role="alert">
+  <strong style="color: red;font-size: 16px;">{{message}}</strong>
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+    {% endfor %}
+  {% endif %}
+
+    <form method="POST" action=""enctype="multipart/form-data">
+        {% csrf_token %}
+
+         <div class="user-box">
+          <label>University Name *</label>
+        {{form.university}}
+        
+      </div>
+
+      <div class="user-box">
+         <label>Course Name *</label>
+        {{form.CourseName}}
+       
+      </div>
+
+       <div class="user-box">
+         <label>Studenr name *</label>
+       {{form.StudentName}}
+       
+      </div>
+
+
+
+
+
+       <div class="user-box">
+         <label>Project name *</label>
+       {{form.ProjectName}}
+       
+      </div>
+
+      <div class="user-box">
+         <label>Project Year *</label>
+       {{form.Year}}
+       
+      </div>
+
+
+      <div class="user-box">
+        <label>Student Gender</label>
+       {{form.Gender}}
+        
+      </div>
+
+
+      
+
+     
+
+     
+  <div class="user-box">
+          <label>Student PhoneNumber</label>
+       {{form.StudentPhoneNumber}}
+        
+      </div>
+
+         
+
+
+         
+
+
+         <div class="user-box">
+          <label>Student Email</label>
+       {{form.StudentEmail}}
+        
+      </div>
+
+      <div class="user-box">
+          <label>Upload Project Pdf File</label>
+       {{form.pdf}}
+        
+      </div>
+
+
+         <div class="user-box">
+          <label>Project Image</label>
+       {{form.ProjectImage}}
+        
+      </div>
+
+
+       
+
+
+         <div class="user-box">
+          <label>Project Github Link</label>
+       {{form.Github}}
+        
+      </div>
+
+
+         <div class="user-box">
+           <label>Project Youtube Link</label>
+
+       {{form.Youtube}}
+             </div>
+
+         <div class="user-box">
+          <label>Students Whatsapp Link</label>
+
+       {{form.WhatsappLink}}
+              </div>
+
+
+       <div class="user-box">
+        <label>Project Description</label><br>
+        {{form.media}}
+        {{form.ProjectBody}}
+        
+      </div>
+
+
+
+
+
+     <!--  <p><input type="checkbox">Remember me <span>Forgot?</span></p> -->
+
+        <a href="" class="link-btn">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+
+
+
+        <button type="submit"  style="background-color: green;color: white;padding: 10px;padding-right: 20px;padding-left: 20px;font-size: 20px;border-radius: 10px;">Add Project</button>
+      </a>
+
+     <!--  <div class="options-02">
+                    <p>You don't have an account? <a href="" style="font-size: 18px;color: lightblue;font-weight: bold;text-decoration: none;">Sign Up</a></p>
+                </div> -->
+    </form>
+  </div>
+
+
+
+
+
+
+
+
+
+    
+  </div>
+
+</body>
+</html>
+{% endblock %}
